@@ -73,24 +73,25 @@ def test_left_join_filter_on_vs_where(fb_db):
         sql_on = """
                  SELECT a.id, b.id
                  FROM a
-                          LEFT JOIN b
-                                    ON b.a_id = a.id AND b.flag = 1
-                 ORDER BY a.id \
+                 LEFT JOIN b
+                     ON b.a_id = a.id AND b.flag = 1
+                 ORDER BY a.id
                  """
         sql_where = """
                     SELECT a.id, b.id
                     FROM a
-                             LEFT JOIN b
-                                       ON b.a_id = a.id
+                    LEFT JOIN b
+                        ON b.a_id = a.id
                     WHERE b.flag = 1
-                    ORDER BY a.id \
+                    ORDER BY a.id
                     """
 
+        # Выполняем запросы
         cur.execute(sql_on)
         rows_on = cur.fetchall()
 
         cur.execute(sql_where)
         rows_where = cur.fetchall()
 
-        # один тесткейс = одно правило, проверяем обе стороны правила
+        # Сравниваем полученные результаты
         assert (rows_on, rows_where) == ([(1, None), (2, None)], [])
