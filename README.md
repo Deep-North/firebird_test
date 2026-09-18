@@ -41,7 +41,7 @@ pytest -v
 
 ## Структура
 * test_join_left_on_vs_where.py — тест
-* фикстура fb_db создаёт временную БД в tmp_path и выполняет teardown (best-effort)
+* фикстура fb_db создаёт временную БД в tmp_path и выполняет teardown
 
 ## Что делает фикстура fb_db
 1. Setup
@@ -50,7 +50,7 @@ pytest -v
 * открывает соединение и отдаёт его тесту
 
 2. Teardown
-* пытается выполнить DROP DATABASE (best-effort)
+* пытается выполнить DROP DATABASE
 * закрывает соединение
 * удаляет файл БД (best-effort, с ретраями при необходимости)
 
